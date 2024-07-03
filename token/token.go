@@ -1,12 +1,21 @@
 package token
 
+var keywords = map[string]TokenType{
+	"litter": FUNCTION,
+	"cat":    VAR,
+	"hiss":   IF,
+	"purr":   ELSE,
+	"pounce": RETURN,
+	"meow":   TRUE,
+	"mrow":   FALSE,
+}
+
 const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 	// Identifiers + literals
 	IDENT = "IDENT" // add, foobar, x, y, ...
 	INT   = "INT"
-	// 1343456
 	// Operators
 	ASSIGN = "="
 	PLUS   = "+"
@@ -19,7 +28,14 @@ const (
 	RBRACE    = "}"
 	// Keywords
 	FUNCTION = "FUNCTION"
-	LET      = "LET"
+	VAR      = "VAR"
+
+	RETURN = "RETURN"
+	IF     = "IF"
+	ELSE   = "ELSE"
+
+	TRUE  = "TRUE"
+	FALSE = "FALSE"
 )
 
 type TokenType string
