@@ -55,6 +55,12 @@ func (l *Lexer) NextToken() token.Token {
 	case '=':
 		tok.Type = token.ASSIGN
 		tok.Literal = "="
+	case ';':
+		tok.Type = token.SEMICOLON
+		tok.Literal = ";"
+	case 0:
+		tok.Type = token.EOF
+		tok.Literal = ""
 
 	default:
 		if isLetter(l.ch) {
@@ -62,8 +68,10 @@ func (l *Lexer) NextToken() token.Token {
 			tok.Type = token.LookUpIdentifier(tok.Literal)
 			log.Println(tok.Type)
 			return tok
-		} else {
-			log.Println("not a letter")
+		} else if isNumber(l.ch) {
+			tok.Literal = l.readNumber()
+			tok.Type = token.INT
+			return tok
 		}
 	}
 
@@ -75,6 +83,10 @@ func isLetter(ch byte) bool {
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
 
+func isNumber(ch byte) bool {
+	return '0' <= ch && ch <= '9'
+}
+
 func (l *Lexer) readIdentifier() string {
 	position := l.position
 
@@ -82,6 +94,13 @@ func (l *Lexer) readIdentifier() string {
 		l.readChar()
 	}
 
-	log.Println(l.input[position:l.position])
+	return l.input[position:l.position]
+}
+
+func (l *Lexer) readNumber() string {
+	position := l.position
+	for isNumber(l.ch) {
+		l.readChar()
+	}
 	return l.input[position:l.position]
 }
