@@ -2,7 +2,6 @@ package lexer
 
 import (
 	"jeisaraja/meowcode/token"
-	"log"
 	"testing"
 )
 
@@ -32,7 +31,8 @@ func TestNextToken(t *testing.T) {
 
 	for i, tt := range tests {
 		tok := l.NextToken()
-		log.Println(i+23, tt, tok)
+		t.Logf("Test[%d] - expected: Type=%q, Literal=%q; got: Type=%q, Literal=%q",
+			i, tt.expectedType, tt.expectedLiteral, tok.Type, tok.Literal)
 		if tok.Type != tt.expectedType {
 			t.Fatalf("tests[%d] - token type wrong. expected %q, got %q", i, tt.expectedType, tok.Type)
 		}
@@ -41,3 +41,4 @@ func TestNextToken(t *testing.T) {
 		}
 	}
 }
+
