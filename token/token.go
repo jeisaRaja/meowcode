@@ -13,20 +13,20 @@ var keywords = map[string]TokenType{
 const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
-	// Identifiers + literals
-	IDENT = "IDENT" // add, foobar, x, y, ...
+
+	IDENT = "IDENT" 
 	INT   = "INT"
-	// Operators
+  
 	ASSIGN = "="
 	PLUS   = "+"
-	// Delimiters
+
 	COMMA     = ","
 	SEMICOLON = ";"
 	LPAREN    = "("
 	RPAREN    = ")"
 	LBRACE    = "{"
 	RBRACE    = "}"
-	// Keywords
+
 	FUNCTION = "FUNCTION"
 	VAR      = "VAR"
 
