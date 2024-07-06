@@ -20,6 +20,28 @@ type Expression interface {
 	expressionNode()
 }
 
+// Program
+type Program struct {
+	Statements []Statement
+}
+
+func (p *Program) TokenLiteral() string {
+	if len(p.Statements) > 0 {
+		return p.Statements[0].TokenLiteral()
+	} else {
+		return ""
+	}
+}
+
+func (p *Program) String() string {
+	var out bytes.Buffer
+
+	for _, s := range p.Statements {
+		out.WriteString(s.String())
+	}
+	return out.String()
+}
+
 // ExpressionStatement
 type ExpressionStatement struct {
 	Token      token.Token
@@ -74,6 +96,6 @@ func (vs *VarStatement) String() string {
 		out.WriteString(vs.Value.String())
 	}
 
-  out.WriteString(";")
+	out.WriteString(";")
 	return out.String()
 }
