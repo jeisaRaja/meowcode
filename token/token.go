@@ -10,13 +10,14 @@ var keywords = map[string]TokenType{
 	"mrow":   FALSE,
 }
 
+
 const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 
-	IDENT = "IDENT" 
+	IDENT = "IDENT"
 	INT   = "INT"
-  
+
 	ASSIGN = "="
 	PLUS   = "+"
 

@@ -2,6 +2,7 @@ package ast
 
 import (
 	"bytes"
+	"fmt"
 	"jeisaraja/meowcode/token"
 )
 
@@ -39,6 +40,7 @@ func (p *Program) String() string {
 	for _, s := range p.Statements {
 		out.WriteString(s.String())
 	}
+	fmt.Println(out.String())
 	return out.String()
 }
 
@@ -66,7 +68,7 @@ type Identifier struct {
 	Value string
 }
 
-func (id *Identifier) statementNode() {}
+func (id *Identifier) expressionNode() {}
 func (id *Identifier) TokenLiteral() string {
 	return id.Token.Literal
 }
